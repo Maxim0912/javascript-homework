@@ -32,7 +32,7 @@ function range(start, end, step=1) {
     return "Введите другие данные";
 }
 
-//Task#3
+//Task#3 ver1
 
 let myString = "lorem ipsum dolor sit amet ipsum consectetur ipsum adipisicing elit unde aut cupiditate illum rerum aspernatur voluptas mollitia voluptate recusandae architecto autem rem laborum temporibus lorem odio eius voluptas lorem molestiae qui laboriosam illo voluptates veritatis corrupti dolor autem suscipit ab iure excepturi nesciunt iure ipsa perferendis corporis saepe natus sint dolores harum quibusdam dolor"
 
@@ -47,7 +47,15 @@ function findSpam(text, ...words) {
     return count >= 5 ? 5 : count;
 }
 
-// console.log(findSpam(myString, 'lorem', 'dolor', 'ipsum'));
+//Task#3 ver2
+
+let myString1 = "lorem ipsum dolor sit amet ipsum consectetur ipsum adipisicing elit unde aut cupiditate illum rerum aspernatur voluptas mollitia voluptate recusandae architecto autem rem laborum temporibus lorem odio eius voluptas lorem molestiae qui laboriosam illo voluptates veritatis corrupti dolor autem suscipit ab iure excepturi nesciunt iure ipsa perferendis corporis saepe natus sint dolores harum quibusdam dolor"
+
+function findSpam1(text, ...words) {
+    let spamWords = text.split(" ").filter(elem => words.includes(elem));
+    return spamWords.length >= 5 ? 5 : spamWords.length;
+}
+// console.log(findSpam1(myString, 'lorem', 'dolor', 'ipsum'));
 
 //Task#4
 
