@@ -48,3 +48,15 @@ function findSpam(text, ...words) {
 }
 
 // console.log(findSpam(myString, 'lorem', 'dolor', 'ipsum'));
+
+//Task#4
+
+let numsArr = [
+    [3, 5, -1, 6, 0],
+    [56, -9, 111, 6],
+    [11, 86, -12],
+];
+
+numsArr.forEach(elem => elem.forEach((elem, index, arr) => arr[index] += 10));
+
+let evenArray = numsArr.join(",").split(",").filter(elem => elem > 0);

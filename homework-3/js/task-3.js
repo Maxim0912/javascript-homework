@@ -57,3 +57,21 @@ for (let i = 0; i < lengthArray; i +=1 ) {
     newArray[i] = Math.floor(Math.random() * (finish - start) + start);
     if (newArray[i] < 0) oddsArray.push(newArray[i]);
 }
+
+//Task#3 решение от маэстро 
+nums = [34, 89, -12, -1, 0];
+let newNums = [];
+for (let i = nums.length; i >=0; i -=1) {
+    if (nums[i] < 0) newNums.push(nums[i]);
+    // if (nums[i] < 0) newNums.push(nums.splice(i, 1)[0]);
+}
+
+//Task#2 решение от маэстро 
+
+// nums1 = [34, 78, 10, -90, 1, 0, 5];
+// let min3 = Number.MAX_VALUE;
+// let max3 = Number.MIN_VALUE;
+
+// for (let i = 0; i < nums1.length; i+=1) {
+//     if (nums1[i] < min3) min3 = nums1[i];
+// }
