@@ -1,0 +1,20 @@
+'use strict';
+
+//Task#1
+
+function countIncludes(first, second) {
+    let count = 0;
+    let arrayFromString = first.split(" ");
+    for (let string of arrayFromString) {
+        if (string.includes(second)) count +=1;
+    }
+    return count;
+}
+
+//Task#2
+
+function checkPolindrom(string) {
+    let noSpaceString = string.toLowerCase().split(" ").join("");
+    let revercedString = noSpaceString.split("").reverse().join("");
+    return noSpaceString === revercedString ?  "Полиндром" :  "Не полиндром";
+}
