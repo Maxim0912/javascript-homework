@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задачи</title>
+</head>
+<body>
+<h2>Добавление задачи</h2>
+<form action="#" method="post" name="task-form">
+    <span id="success-message"></span>
+    <div>
+        <label for="title">Название задачи</label>
+        <input name="title" id="title" type="text" placeholder="Введите название задачи">
+        <span id="title-error"></span>
+    </div>
+    <div>
+        <label for="description">Описание задачи</label>
+        <textarea name="description" id="description" type="text" placeholder="Введите описание задачи"></textarea>
+    </div>
+    <div>
+        <label for="date">Срок выполнения задачи</label>
+        <input name="date" id="date" type="datetime-local">
+        <span id="date-error"></span>
+    </div>
+    <div>
+        <button type="button">Добавить участника</button>
+    </div>
+    <input type="submit" value="Добавить задачу">
+</form>
+
+<script src="js/index.js"></script>
+</body>
+</html>
