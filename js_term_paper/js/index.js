@@ -2,6 +2,28 @@
 
 let taskForm = document.forms["task-form"];
 
+function addFollowers() {
+    let container = document.createElement("div");
+    let input = document.createElement("input");
+    input.setAttribute("type","text");
+    input.setAttribute("name","followers");
+    let btn = document.createElement("button");
+    btn.setAttribute("type", "button");
+    btn.setAttribute("name", "delete");
+    btn.addEventListener("click", delFollowers);
+    btn.innerText = "X";
+    container.append(input);
+    container.append(btn);
+    document.querySelector("section").append(container);
+};
+
+let addId = document.getElementById("add");
+addId.addEventListener("click", addFollowers);
+
+function delFollowers() {
+    this.parentElement.remove();
+};
+
 function retrieveStorageData() {
     let storageData = [];
     if (localStorage.getItem("array")) {
@@ -10,11 +32,21 @@ function retrieveStorageData() {
     return storageData;
 };
 
+function createFollowersArray() {
+    let followersArray = [];
+    let followersHtmlCollection = document.getElementsByName("followers");
+    for (let follower of followersHtmlCollection) {
+        followersArray.push(follower.value);
+    }
+    return followersArray;
+};
+
 function prepareData(form) {
     let singleTask = {
         title: form.elements.title.value,
         description: form.elements.description.value,
         date: form.elements.date.value,
+        followers: createFollowersArray(),
     }
     return singleTask;
 };
@@ -31,7 +63,7 @@ function sendDataToStorage() {
 let titleRules = {
     elem: taskForm.elements.title,
     minLength: 1,
-    maxLength: 15,
+    maxLength: 20,
     errorField: document.getElementById("title-error"),
 
     checkLength() {
@@ -66,6 +98,17 @@ let dateRules = {
     }
 };
 
+function TimeoutSuccessMessage(message) {
+    message.innerText = "";
+};
+
+function cleanForm(form) {
+    let followers = document.querySelector("section").children;
+    for (let item = followers.length - 1; item >= 0; item -=1)
+        followers[item].remove();
+    form.reset();
+}
+
 taskForm.elements.title
     .addEventListener("keyup", titleRules.checkLength.bind(titleRules));
 
@@ -73,13 +116,15 @@ taskForm.elements.date
     .addEventListener("change", dateRules.validateDate.bind(dateRules));
 
 taskForm.addEventListener("submit", (event)=>{
+    let success = document.getElementById("success-message");
     event.preventDefault();
     if (!titleRules.checkLength() || !dateRules.validateDate()) {
-        console.log("Данные нельзя отправить на сервер");
+        success.innerText = "Данные нельзя отправить на сервер";
+        setTimeout(TimeoutSuccessMessage, 1200, success);
     } else {
-        let success = document.getElementById("success-message");
         success.innerText = "Задача была успешно добавлена";
-        console.log("Данные можно отправить на сервер");
         sendDataToStorage();
+        setTimeout(TimeoutSuccessMessage, 1200, success);
+        cleanForm(taskForm);
     } 
 })

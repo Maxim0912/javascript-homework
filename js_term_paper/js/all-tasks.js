@@ -9,18 +9,19 @@ tasks.sort(function(a, b) {
 });
 
 function getDataFromStorage(where, array) {
-    let container = document.createElement("section");
+    let container = document.createElement("section"), followers;
     for (let task of tasks) {
         let oneTask = document.createElement("div");
         oneTask.innerHTML = `
             <h2>${task.title}</h2>
             <p>${task.description}</p>
             <p>Выполнить к ${task.date}</p>
+            <p>Участники: ${task.followers.join(",")}</p>
         `;
-        container.append(oneTask);
+        container.append(oneTask);        
     }
     where.append(container);
-}
+};
 
 getDataFromStorage(document.querySelector("main"), tasks);
 
@@ -28,7 +29,7 @@ let allTasks = document.querySelectorAll("section > div");
 
 for (let task of allTasks) {
     task.addEventListener("click", selectTask);
-}
+};
 
 function selectTask() {
     this.classList.toggle("painted");
@@ -37,9 +38,9 @@ function selectTask() {
 function delChoice() {
     let arrayToDell = [];
     let selectedTasks = document.getElementsByClassName("painted");
-    let a = selectedTasks.firstChild;
-    for (let key of selectedTasks) {
-        arrayToDell.push(key.querySelector("h2")['innerText']);
+    for (let item = selectedTasks.length - 1; item >= 0; item -=1) {
+        arrayToDell.push(selectedTasks[item].querySelector("h2")['innerText']);
+        selectedTasks[item].remove();
     }
     return arrayToDell;   
 };

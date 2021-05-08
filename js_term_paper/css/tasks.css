@@ -1,0 +1,15 @@
+.painted {
+    background-color: orange;
+}
+
+form {
+    position: relative;
+}
+
+#success-message {
+    position: absolute;
+}
+
+form > div {
+    padding: 20px;
+}
